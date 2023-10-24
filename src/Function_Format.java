@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class Function_Format {
 	Notepad N;
 	Font arial, consolas, timesnewroman, comicsanms, serif, courier;
-	String selectfont;
+	String selectfont="";
 	Color c2;
 
 	Function_Format(Notepad N) {

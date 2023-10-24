@@ -41,7 +41,7 @@ public class Notepad implements ActionListener {
 		formatmenuitems();
 		helpmenuitems();
 		viewmenuitems();
-		f1.Format_Font(15);
+		f1.Format_Font(11);
 		f1.setFont("Segoe UI");
 		f1.Format_Wordwrap();
 
@@ -50,8 +50,8 @@ public class Notepad implements ActionListener {
 
 	public void window() {
 		windows = new JFrame("Notepad");
-		windows.setSize(1000, 500);
-		// windows.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		windows.setSize(1200, 600);
+		windows.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		windows.getContentPane().setBackground(Color.white);
 		windows.setVisible(true);
 		windows.addWindowListener(new WindowAdapter() {
@@ -82,7 +82,7 @@ public class Notepad implements ActionListener {
 	public void iconfuntion() {
 		Image icon = Toolkit.getDefaultToolkit().getImage("D:\\CPP Project\\Notepad_Clone\\src\\icon.png");
 		windows.setIconImage(icon);
-		icon.equals(true);
+		// icon.equals(true);
 	}
 
 	public void textarea() {
