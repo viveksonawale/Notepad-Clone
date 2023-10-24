@@ -4,9 +4,8 @@ import java.awt.event.*;
 
 public class Function_Format {
 	Notepad N;
-	Font arial, consolas, timesnewroman;
+	Font arial, consolas, timesnewroman, comicsanms, serif, courier;
 	String selectfont;
-	Font selectedfont;
 	Color c2;
 
 	Function_Format(Notepad N) {
@@ -27,40 +26,43 @@ public class Function_Format {
 		}
 	}
 
-	public void Format_Font(int zoom) {
-		consolas = new Font("Consolas", Font.PLAIN, 23);
-		timesnewroman = new Font("Times New Roman", Font.PLAIN, 23);
+	public void Format_Font(int fontsize) {
+		arial = new Font("Arial", Font.PLAIN, fontsize);
+		consolas = new Font("Consolas", Font.PLAIN, fontsize);
+		timesnewroman = new Font("Times New Roman", Font.PLAIN, fontsize);
+		comicsanms = new Font("Comic Sans MS", Font.PLAIN, fontsize);
+		serif = new Font("Serif", Font.PLAIN, fontsize);
+		courier = new Font("Courier", Font.PLAIN, fontsize);
 
+		setFont(selectfont);
 	}
 
-	public void Format_theme(){
-		switch(N.command){
-			case "++Dark++":
-			N.ta.setBackground(Color.BLACK);
-			N.ta.setForeground(Color.WHITE);
-			break;
-			case "White":
-			N.ta.setBackground(Color.WHITE);
-			N.ta.setForeground(Color.BLACK);
-			break;
-			case "Dracula":
-			N.ta.setBackground(Color.GRAY);
-			N.ta.setForeground(Color.PINK);
-			break;
-			case "Red":
-			N.ta.setBackground(Color.RED);
-			N.ta.setForeground(Color.YELLOW);
-			break;
-			case "Blue":
-			N.ta.setBackground(Color.BLUE);
-			N.ta.setForeground(Color.WHITE);
-			break;
-			case "Green":
-			N.ta.setBackground(Color.GREEN);
-			N.ta.setForeground(Color.red);
-			break;
+	public void setFont(String font) {
+		selectfont = font;
+		switch (selectfont) {
+			case "Arial":
+				N.ta.setFont(arial);
+				break;
+			case "Comic Sans MS":
+				N.ta.setFont(comicsanms);
+				break;
+			case "Consolas":
+				N.ta.setFont(consolas);
+				break;
+			case "Times new Roman":
+				N.ta.setFont(timesnewroman);
+				break;
+			case "Serif":
+				N.ta.setFont(serif);
+				break;
+			case "Courier":
+				N.ta.setFont(courier);
+				break;
 		}
-		
+	}
+
+	public void Format_theme() {
+
 	}
 
 	public void view_setback() {

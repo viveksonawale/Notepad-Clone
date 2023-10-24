@@ -15,7 +15,9 @@ public class Notepad implements ActionListener {
 	JMenu file, edit, format, view, help, zoom, font, theme;
 	JMenuItem NNEW, open, save, save_as, print, exit, copy, paste, cut, selectall, undo, redo, about, setback,
 			setforeg, autosave, view_help, feed, wordwrap, fontconsolas, fontTimesnewroman, fontFiraCode,
-			fontCascadiaCode, fontJetBrainsMono, fontHasklig, fontMonoid, Dark, dracula, wwhite, Red, Blue, Green,hacker;
+			fontCascadiaCode, fontJetBrainsMono, fontHasklig, fontMonoid, Dark, dracula, wwhite, Red, Blue, Green,
+			hacker, font8, font10, font11, font12, font14, font16, font18, font20, font22, font24, font26, font28,
+			font30, font100, fontcomicsanms, fontserif, fontcourier, fontarial;
 	String command;
 	Boolean Wordwrapon = false;
 	Boolean autosaveon = false;
@@ -39,6 +41,9 @@ public class Notepad implements ActionListener {
 		formatmenuitems();
 		helpmenuitems();
 		viewmenuitems();
+		f1.Format_Font(15);
+		f1.setFont("Segoe UI");
+		f1.Format_Wordwrap();
 
 		windows.setVisible(true);
 	}
@@ -238,6 +243,13 @@ public class Notepad implements ActionListener {
 		font.setBackground(Color.WHITE);
 		format.add(font);
 
+		fontarial = new JMenuItem("Arial");
+		fontarial.setFont(new Font("Arial", Font.PLAIN, 12));
+		fontarial.addActionListener(this);
+		fontarial.setActionCommand("Arial");
+		fontarial.setBackground(Color.WHITE);
+		font.add(fontarial);
+
 		fontconsolas = new JMenuItem("Consolas");
 		fontconsolas.setFont(new Font("Consolas", Font.PLAIN, 12));
 		fontconsolas.addActionListener(this);
@@ -251,15 +263,142 @@ public class Notepad implements ActionListener {
 		fontTimesnewroman.setActionCommand("Times New Roman");
 		fontTimesnewroman.setBackground(Color.WHITE);
 		font.add(fontTimesnewroman);
-	}
 
-	public void viewmenuitems() {
+		fontcomicsanms = new JMenuItem("Comic Sans MS");
+		fontcomicsanms.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		fontcomicsanms.addActionListener(this);
+		fontcomicsanms.setActionCommand("Comic Sans MS");
+		fontcomicsanms.setBackground(Color.WHITE);
+		font.add(fontcomicsanms);
+
+		fontserif = new JMenuItem("Serif");
+		fontserif.setFont(new Font("Serif", Font.PLAIN, 12));
+		fontserif.addActionListener(this);
+		fontserif.setActionCommand("Serif");
+		fontserif.setBackground(Color.WHITE);
+		font.add(fontserif);
+
+		fontcourier = new JMenuItem("Courier");
+		fontcourier.setFont(new Font("Courier", Font.PLAIN, 12));
+		fontcourier.addActionListener(this);
+		fontcourier.setActionCommand("Courier");
+		fontcourier.setBackground(Color.WHITE);
+		font.add(fontcourier);
+
 		zoom = new JMenu("Zoom");
 		zoom.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		zoom.addActionListener(this);
 		zoom.setActionCommand("Zoom");
 		zoom.setBackground(Color.WHITE);
-		view.add(zoom);
+		format.add(zoom);
+
+		font8 = new JMenuItem("8");
+		font8.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		font8.addActionListener(this);
+		font8.setActionCommand("10");
+		font8.setBackground(Color.WHITE);
+		zoom.add(font8);
+
+		font10 = new JMenuItem("10");
+		font10.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		font10.addActionListener(this);
+		font10.setActionCommand("10");
+		font10.setBackground(Color.WHITE);
+		zoom.add(font10);
+
+		font11 = new JMenuItem("11");
+		font11.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		font11.addActionListener(this);
+		font11.setActionCommand("11");
+		font11.setBackground(Color.WHITE);
+		zoom.add(font11);
+
+		font12 = new JMenuItem("12");
+		font12.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		font12.addActionListener(this);
+		font12.setActionCommand("12");
+		font12.setBackground(Color.WHITE);
+		zoom.add(font12);
+
+		font14 = new JMenuItem("14");
+		font14.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		font14.addActionListener(this);
+		font14.setActionCommand("14");
+		font14.setBackground(Color.WHITE);
+		zoom.add(font14);
+
+		font16 = new JMenuItem("16");
+		font16.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		font16.addActionListener(this);
+		font16.setActionCommand("16");
+		font16.setBackground(Color.WHITE);
+		zoom.add(font16);
+
+		font18 = new JMenuItem("18");
+		font18.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		font18.addActionListener(this);
+		font18.setActionCommand("18");
+		font18.setBackground(Color.WHITE);
+		zoom.add(font18);
+
+		font20 = new JMenuItem("20");
+		font20.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		font20.addActionListener(this);
+		font20.setActionCommand("20");
+		font20.setBackground(Color.WHITE);
+		zoom.add(font20);
+
+		font22 = new JMenuItem("22");
+		font22.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		font22.addActionListener(this);
+		font22.setActionCommand("22");
+		font22.setBackground(Color.WHITE);
+		zoom.add(font22);
+
+		font24 = new JMenuItem("24");
+		font24.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		font24.addActionListener(this);
+		font24.setActionCommand("24");
+		font24.setBackground(Color.WHITE);
+		zoom.add(font24);
+
+		font26 = new JMenuItem("26");
+		font26.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		font26.addActionListener(this);
+		font26.setActionCommand("26");
+		font26.setBackground(Color.WHITE);
+		zoom.add(font26);
+
+		font28 = new JMenuItem("28");
+		font28.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		font28.addActionListener(this);
+		font28.setActionCommand("28");
+		font28.setBackground(Color.WHITE);
+		zoom.add(font28);
+
+		font28 = new JMenuItem("28");
+		font28.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		font28.addActionListener(this);
+		font28.setActionCommand("28");
+		font28.setBackground(Color.WHITE);
+		zoom.add(font28);
+
+		font30 = new JMenuItem("30");
+		font30.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		font30.addActionListener(this);
+		font30.setActionCommand("30");
+		font30.setBackground(Color.WHITE);
+		zoom.add(font30);
+
+		font100 = new JMenuItem("100");
+		font100.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		font100.addActionListener(this);
+		font100.setActionCommand("100");
+		font100.setBackground(Color.WHITE);
+		zoom.add(font100);
+	}
+
+	public void viewmenuitems() {
 
 		theme = new JMenu("Theme");
 		theme.setFont(new Font("Segoe UI", Font.PLAIN, 12));
@@ -268,7 +407,7 @@ public class Notepad implements ActionListener {
 		theme.setBackground(Color.WHITE);
 		view.add(theme);
 
-		Dark = new JMenuItem("++Dark++");
+		Dark = new JMenuItem("Dark++");
 		Dark.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		Dark.addActionListener(this);
 		Dark.setActionCommand("++Dark++");
@@ -425,16 +564,73 @@ public class Notepad implements ActionListener {
 			case "Word Wrap : Off":
 				f1.Format_Wordwrap();
 				break;
-			case "Consolas":
-				break;
-			case "Times New Roman":
-				break;
 			case "Set Font Color":
 				f1.view_setforeg();
 				break;
 			case "Zoom":
 
 				break;
+			case "8":
+				f1.Format_Font(8);
+				break;
+			case "10":
+				f1.Format_Font(10);
+				break;
+			case "11":
+				f1.Format_Font(11);
+				break;
+			case "12":
+				f1.Format_Font(12);
+				break;
+			case "14":
+				f1.Format_Font(14);
+				break;
+			case "16":
+				f1.Format_Font(16);
+				break;
+			case "18":
+				f1.Format_Font(18);
+				break;
+			case "20":
+				f1.Format_Font(20);
+				break;
+			case "22":
+				f1.Format_Font(22);
+				break;
+			case "24":
+				f1.Format_Font(24);
+				break;
+			case "26":
+				f1.Format_Font(26);
+				break;
+			case "28":
+				f1.Format_Font(28);
+				break;
+			case "30":
+				f1.Format_Font(30);
+				break;
+			case "100":
+				f1.Format_Font(100);
+				break;
+			case "Arial":
+				f1.setFont(command);
+				break;
+			case "Comic Sans MS":
+				f1.setFont(command);
+				break;
+			case "Consolas":
+				f1.setFont(command);
+				break;
+			case "Times new Roman":
+				f1.setFont(command);
+				break;
+			case "Serif":
+				f1.setFont(command);
+				break;
+			case "Courier":
+				f1.setFont(command);
+				break;
+
 			case "++Dark++":
 				ta.setBackground(Color.BLACK);
 				ta.setForeground(Color.WHITE);
@@ -464,12 +660,12 @@ public class Notepad implements ActionListener {
 				ta.setForeground(Color.red);
 				ta.setCaretColor(Color.WHITE);
 				break;
-				case "Hacker":
+			case "Hacker":
 				ta.setBackground(Color.BLACK);
 				ta.setForeground(Color.GREEN);
 				ta.setCaretColor(Color.WHITE);
 				break;
-				
+
 			case "Set Custom Background":
 				f1.view_setback();
 				break;
