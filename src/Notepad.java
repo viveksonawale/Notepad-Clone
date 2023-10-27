@@ -1,10 +1,17 @@
 import javax.swing.*;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.undo.UndoManager;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class Notepad implements ActionListener {
 
@@ -13,21 +20,22 @@ public class Notepad implements ActionListener {
 	JScrollPane sp;
 	JMenuBar mb;
 	JMenu file, edit, format, view, help, zoom, font, theme;
-	JMenuItem NNEW, open, save, save_as, print, exit, copy, paste, cut, selectall, undo, redo, about, setback,
-			setforeg, autosave, view_help, feed, wordwrap, fontconsolas, fontTimesnewroman, fontFiraCode,
+	JMenuItem NNEW, open, save, save_as, exit, copy, paste, cut, selectall, undo, redo, about, setback,
+			setforeg, autosave, view_help, wordwrap, fontconsolas, fontTimesnewroman, fontFiraCode,
 			fontCascadiaCode, fontJetBrainsMono, fontHasklig, fontMonoid, Dark, dracula, wwhite, Red, Blue, Green,
 			hacker, font8, font10, font11, font12, font14, font16, font18, font20, font22, font24, font26, font28,
 			font30, font100, fontcomicsanms, fontserif, fontcourier, fontarial;
 	String command;
+
 	Boolean Wordwrapon = false;
 	Boolean autosaveon = false;
-	Color backcolorfordracula = new Color(40 ,42, 54);
-	Color forgcolorfordracula = new Color(248, 248 ,242);
+	Color backcolorfordracula = new Color(40, 42, 54);
+	Color forgcolorfordracula = new Color(248, 248, 242);
 
 	Function_File_and_Edit f = new Function_File_and_Edit(this);
 	Function_Format f1 = new Function_Format(this);
+	UndoManager U = new UndoManager();
 	ImageIcon icon;
-	JPopupMenu popmenu = new JPopupMenu();
 
 	public static void main(String[] args) {
 		Notepad N = new Notepad();
@@ -89,6 +97,12 @@ public class Notepad implements ActionListener {
 
 	public void textarea() {
 		ta = new JTextArea();
+		ta.getDocument().addUndoableEditListener(new UndoableEditListener() {
+			public void undoableEditHappened(UndoableEditEvent e) {
+				U.addEdit(e.getEdit());
+			}
+		});
+
 		sp = new JScrollPane(ta, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		sp.setBorder(BorderFactory.createEmptyBorder());
 		windows.add(sp);
@@ -154,14 +168,6 @@ public class Notepad implements ActionListener {
 		save_as.setActionCommand("Save As");
 		save_as.setBackground(Color.WHITE);
 		file.add(save_as);
-
-		print = new JMenuItem("Print");
-		print.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		print.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
-		print.addActionListener(this);
-		print.setActionCommand("Print");
-		print.setBackground(Color.WHITE);
-		file.add(print);
 
 		autosave = new JMenuItem("Auto Save: Off");
 		autosave.setFont(new Font("Segoe UI", Font.PLAIN, 12));
@@ -481,13 +487,6 @@ public class Notepad implements ActionListener {
 		view_help.setBackground(Color.WHITE);
 		help.add(view_help);
 
-		feed = new JMenuItem("Send Feedback");
-		feed.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		feed.addActionListener(this);
-		feed.setActionCommand("Send Feedback");
-		feed.setBackground(Color.WHITE);
-		help.add(feed);
-
 		about = new JMenuItem("About");
 		about.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		about.addActionListener(this);
@@ -499,6 +498,7 @@ public class Notepad implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// Switch case to TRRIGER THE FUNCTION
 		command = e.getActionCommand();
 
 		switch (command) {
@@ -515,9 +515,7 @@ public class Notepad implements ActionListener {
 			case "Save As":
 				f.File_save();
 				break;
-			case "Print":
-				f.File_print();
-				break;
+
 			case "AutoSave":
 				f.autosave();
 				break;
@@ -540,12 +538,10 @@ public class Notepad implements ActionListener {
 				}
 				break;
 			case "Undo":
-				f.initializeUndoManager();
 				f.Edit_undo();
 				break;
 			case "Redo":
-				f.initializeUndoManager();
-				f.Edit_redo();
+				f.Edit_undo();
 				break;
 			case "Cut":
 				f.Edit_cut();
@@ -570,7 +566,6 @@ public class Notepad implements ActionListener {
 				f1.view_setforeg();
 				break;
 			case "Zoom":
-
 				break;
 			case "8":
 				f1.Format_Font(8);
@@ -671,17 +666,21 @@ public class Notepad implements ActionListener {
 			case "Set Custom Background":
 				f1.view_setback();
 				break;
-			case "Show Line No..":
-
-				break;
 			case "View Help":
-
-				break;
-			case "Send Feedback":
-
+				try {
+					Desktop.getDesktop().browse(new URI("https://github.com/Vivek-Sonawale"));
+				} catch (IOException | URISyntaxException ex) {
+					ex.printStackTrace();
+				}
 				break;
 			case "About":
+				String aboutMessage = "Notepad Clone\n\n"
+						+ "Version: 1.0\n"
+						+ "Developer: Vivek Sonawale\n"
+						+ "Description: This is Notepad Clone, using Java.\nAdded New Features Like Theme And Autosave\n"
+						+ "Copyright © 2023  SenpaiPro";
 
+				JOptionPane.showMessageDialog(null, aboutMessage, "About", JOptionPane.INFORMATION_MESSAGE);
 				break;
 		}
 	}

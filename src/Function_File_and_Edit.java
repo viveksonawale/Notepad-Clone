@@ -6,15 +6,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-import javax.swing.event.UndoableEditEvent;
-import javax.swing.event.UndoableEditListener;
-import javax.swing.undo.UndoManager;
-
 public class Function_File_and_Edit {
 
 	Notepad N;
 	String filename, fileaddress;
-	UndoManager undoManager;
 
 	Function_File_and_Edit(Notepad N) {
 		this.N = N;
@@ -116,36 +111,22 @@ public class Function_File_and_Edit {
 
 	public void autosave() {
 		// Pending....
-		if(N.autosaveon==false){
+		if (N.autosaveon == false) {
 			N.autosaveon = true;
-			//................
+			// ................
 			N.autosave.setText("Auto Save: On");
-		}
-		else if(N.autosaveon = true){
+		} else if (N.autosaveon = true) {
 			N.autosaveon = false;
 			N.autosave.setText("Auto Save: Off");
 		}
 	}
 
-	public void initializeUndoManager() {
-		undoManager = new UndoManager();
-		N.ta.getDocument().addUndoableEditListener(new UndoableEditListener() {
-			public void undoableEditHappened(UndoableEditEvent e) {
-				undoManager.addEdit(e.getEdit());
-			}
-		});
-	}
-
 	public void Edit_undo() {
-		if (undoManager.canUndo()) {
-			undoManager.undo();
-		}
+		N.U.undo();
 	}
 
 	public void Edit_redo() {
-		if (undoManager.canRedo()) {
-			undoManager.redo();
-		}
+		N.U.redo();
 	}
 
 	public void Edit_copy() {
