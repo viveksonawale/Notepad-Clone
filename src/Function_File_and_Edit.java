@@ -1,10 +1,10 @@
 import java.awt.Color;
 import java.awt.FileDialog;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
+
+import javax.swing.JOptionPane;
 
 public class Function_File_and_Edit {
 
@@ -92,17 +92,6 @@ public class Function_File_and_Edit {
 			}
 		}
 
-	}
-
-	public void File_print() {
-		PrinterJob pj = PrinterJob.getPrinterJob();
-		if (pj.printDialog()) {
-			try {
-				pj.print();
-			} catch (PrinterException exc) {
-				System.out.println(exc);
-			}
-		}
 	}
 
 	public boolean isTextModified() {

@@ -49,7 +49,7 @@ public class Function_Format {
 			case "Consolas":
 				N.ta.setFont(consolas);
 				break;
-			case "Times new Roman":
+			case "Times New Roman":
 				N.ta.setFont(timesnewroman);
 				break;
 			case "Serif":

@@ -2,13 +2,13 @@ import javax.swing.*;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
 import javax.swing.undo.UndoManager;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -20,11 +20,18 @@ public class Notepad implements ActionListener {
 	JScrollPane sp;
 	JMenuBar mb;
 	JMenu file, edit, format, view, help, zoom, font, theme;
-	JMenuItem NNEW, open, save, save_as, exit, copy, paste, cut, selectall, undo, redo, about, setback,
-			setforeg, autosave, view_help, wordwrap, fontconsolas, fontTimesnewroman, fontFiraCode,
-			fontCascadiaCode, fontJetBrainsMono, fontHasklig, fontMonoid, Dark, dracula, wwhite, Red, Blue, Green,
-			hacker, font8, font10, font11, font12, font14, font16, font18, font20, font22, font24, font26, font28,
-			font30, font100, fontcomicsanms, fontserif, fontcourier, fontarial;
+	// File Menu
+	JMenuItem NNEW, open, save, save_as, exit, autosave;
+	// Edit Menu
+	JMenuItem copy, paste, cut, selectall, undo, redo;
+	// Help Menu
+	JMenuItem about, view_help;
+	// View Menu
+	JMenuItem Dark, dracula, wwhite, Red, Blue, Green, hacker;
+	// Format Menu
+	JMenuItem wordwrap, setback, setforeg, fontconsolas, fontTimesnewroman, fontcomicsanms, fontserif, fontcourier,
+			fontarial, font8, font10, font11, font12, font14, font16, font18, font20, font22, font24, font26, font28,
+			font30, font100;
 	String command;
 
 	Boolean Wordwrapon = false;
@@ -51,7 +58,7 @@ public class Notepad implements ActionListener {
 		formatmenuitems();
 		helpmenuitems();
 		viewmenuitems();
-		f1.Format_Font(11);
+		f1.Format_Font(14);
 		f1.setFont("Segoe UI");
 		f1.Format_Wordwrap();
 
@@ -541,7 +548,7 @@ public class Notepad implements ActionListener {
 				f.Edit_undo();
 				break;
 			case "Redo":
-				f.Edit_undo();
+				f.Edit_redo();
 				break;
 			case "Cut":
 				f.Edit_cut();
@@ -618,8 +625,8 @@ public class Notepad implements ActionListener {
 			case "Consolas":
 				f1.setFont(command);
 				break;
-			case "Times new Roman":
-				f1.setFont(command);
+			case "Times New Roman":
+				f1.setFont("Times New Roman");
 				break;
 			case "Serif":
 				f1.setFont(command);
