@@ -32,12 +32,15 @@ public class Notepad implements ActionListener {
 	JMenuItem wordwrap, setback, setforeg, fontconsolas, fontTimesnewroman, fontcomicsanms, fontserif, fontcourier,
 			fontarial, font8, font10, font11, font12, font14, font16, font18, font20, font22, font24, font26, font28,
 			font30, font100;
+
 	String command;
 
 	Boolean Wordwrapon = false;
 	Boolean autosaveon = false;
 	Color backcolorfordracula = new Color(40, 42, 54);
 	Color forgcolorfordracula = new Color(248, 248, 242);
+	private Timer autosaveTimer;
+	private final int AUTOSAVE_INTERVAL = 6000; // Autosave every 60 seconds
 
 	Function_File_and_Edit f = new Function_File_and_Edit(this);
 	Function_Format f1 = new Function_Format(this);
@@ -61,6 +64,14 @@ public class Notepad implements ActionListener {
 		f1.Format_Font(14);
 		f1.setFont("Segoe UI");
 		f1.Format_Wordwrap();
+		autosaveTimer = new Timer(AUTOSAVE_INTERVAL, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				f.File_save();
+			}
+		});
+		toggleAutosave();
+		autosaveTimer.start();
 
 		windows.setVisible(true);
 	}
@@ -74,7 +85,11 @@ public class Notepad implements ActionListener {
 		windows.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				handleExit();
+				if (ta != null) {
+					handleExit();
+				} else if (ta == null) {
+					System.exit(0);
+				}
 			}
 
 			public void handleExit() {
@@ -87,14 +102,37 @@ public class Notepad implements ActionListener {
 						System.exit(0);
 					} else if (result == JOptionPane.NO_OPTION) {
 						System.exit(0);
+					} else if (result == JOptionPane.CANCEL_OPTION) {
+
+					} else {
+						System.out.println("This is Cancel from EXIT menuitem");
 					}
-				} else {
-					System.out.println("This is Cancel from EXIT menuitem");
 				}
 			}
 		});
 
 	}
+
+	public void toggleAutosave() {
+		if (autosaveon) {
+			autosaveon = false;
+			autosave.setText("Auto Save: Off");
+			if (autosaveTimer != null) {
+				autosaveTimer.stop();
+			}
+		} else {
+			autosaveon = true;
+			autosave.setText("Auto Save: On");
+			autosaveTimer = new Timer(AUTOSAVE_INTERVAL, new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					f.File_save();
+				}
+			});
+			autosaveTimer.start();
+		}
+	}
+	
 
 	public void iconfuntion() {
 		Image icon = Toolkit.getDefaultToolkit().getImage("D:\\CPP Project\\Notepad_Clone\\src\\icon.png");
@@ -524,7 +562,7 @@ public class Notepad implements ActionListener {
 				break;
 
 			case "AutoSave":
-				f.autosave();
+				toggleAutosave();
 				break;
 			case "On":
 
@@ -643,6 +681,7 @@ public class Notepad implements ActionListener {
 			case "White":
 				ta.setBackground(Color.WHITE);
 				ta.setForeground(Color.BLACK);
+				ta.setCaretColor(Color.BLACK);
 				break;
 			case "Dracula":
 				ta.setBackground(backcolorfordracula);
