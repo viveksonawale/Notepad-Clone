@@ -1,59 +1,64 @@
-# Notepad Clone
+# Notepad Clone Project
 
-![Java Version](https://img.shields.io/badge/Java-%3E%3D%201.8-brightgreen.svg)
+![Project Screenshot](https://github.com/Vivek-Sonawale/Notepad-Clone/assets/110754566/c3e62ae9-3957-4e15-8085-21b5fe856d00)
 
-A simple Notepad clone written in Java, offering basic text editing functionality and customizable themes.
-
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Features](#features)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Themes](#themes)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Introduction
-
-The Notepad Clone project is an open-source text editor created in Java, designed for simplicity and usability. It serves as a lightweight alternative to more complex text editors, providing essential text editing capabilities.
+A Java-based Notepad Clone application with enhanced features like autosave, custom background, and theme options, making it more versatile than the standard Windows 10 Notepad.
 
 ## Features
 
-- **File Operations:**
-  - Create new text files.
-  - Open and edit existing text files.
-  - Save changes to text files.
-  - Save files with a different name using "Save As."
-  - **AutoSave:** Option to enable autosave for automatic saving at intervals.
+### Auto Save
+- This Notepad Clone includes an auto-save feature, ensuring that you never lose your work, even if you forget to save manually. You can toggle auto-save on and off as needed.
 
-- **Editing Functions:**
-  - Cut, copy, and paste text.
-  - Undo and redo changes.
-  - Select all text within the document.
+![AutoSave](https://github.com/Vivek-Sonawale/Notepad-Clone/assets/110754566/0181f31c-5920-489c-bcc7-b70315978a1e)
 
-- **User Interface Customization:**
-  - Choose from a variety of themes to personalize the editor's appearance.
-  - **Set Custom Background:** Customize the background color or image of the editor.
-  - Themes include Dark++, Dracula, White, Red, Blue, Green, and Hacker.
+### Custom Background and Font
+- Personalize your notepad by setting a custom background. Choose from various options, including solid colors or your own background images.
 
-- **Cross-Platform Compatibility:**
-  - Written in Java, the Notepad Clone is compatible with various operating systems.
+![Custome Background](https://github.com/Vivek-Sonawale/Notepad-Clone/assets/110754566/408f0bf0-b793-4b72-8cee-a89b2d3dc1bd)
+
+
+### Themes
+- Customize the appearance of your Notepad with different themes. Choose from themes like Dark++, Dracula, White, Red, Blue, Green, and Hacker to suit your preferences.
+
+![Themes](https://github.com/Vivek-Sonawale/Notepad-Clone/assets/110754566/61f05e32-c6e6-48ed-aa7e-eb1b428286c3)
+
+
+### Word Wrap
+- Enable or disable word wrap for a more comfortable writing experience.
+
+
+### Font Options
+- Choose your preferred font from options like Arial, Consolas, Times New Roman, Comic Sans MS, Serif, and Courier. You can also adjust the font size to meet your needs.
+
 
 ## Getting Started
 
-### Prerequisites
+To use this Notepad Clone, follow these steps:
 
-To run the Notepad Clone, you need to have Java 8 (or higher) installed on your system. You can download the latest version of Java from the [official Oracle website](https://www.oracle.com/java/technologies/javase-downloads.html).
+1. Clone the repository to your local machine.
+2. Build the project using your Java development environment.
+3. Run the application.
+4. Explore the various features and customize your notepad as desired.
 
-### Installation
+## Usage
 
-1. Clone the repository to your local machine using Git:
+- Create, open, and save text files.
+- Enable auto-save to ensure your work is continuously saved.
+- Customize the background and theme for a unique notepad experience.
+- Adjust font and word wrap settings for improved readability.
 
-   ```bash
-   git clone https://github.com/yourusername/notepad-clone.git
-   cd notepad-clone
-   javac Notepad.java
-   java Notepad
+## Contributing
+
+If you'd like to contribute to this project, please fork the repository and create a pull request with your changes. We welcome contributions from the community to enhance this Notepad Clone even further.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## About the Developer
+
+- Developer: [Vivek Sonawale]
+- Contact: [sonawalevivek777@gmail.com]
+- GitHub: [[Your GitHub Profile](https://github.com/Vivek-Sonawale/)]
+
+---
