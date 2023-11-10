@@ -8,17 +8,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException; 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 public class Notepad implements ActionListener {
 
+	// GUI Important Elements
 	JFrame windows;
 	JTextArea ta;
 	JScrollPane sp;
 	JMenuBar mb;
+
+	// Menu
 	JMenu file, edit, format, view, help, zoom, font, theme;
+
 	// File Menu
 	JMenuItem NNEW, open, save, save_as, exit, autosave;
 	// Edit Menu
@@ -33,14 +37,20 @@ public class Notepad implements ActionListener {
 			font30, font100;
 
 	String command;
+	String aboutMessage;
 
 	Boolean Wordwrapon = false;
 	Boolean autosaveon = false;
+
+	// Custom color for Theme
 	Color backcolorfordracula = new Color(40, 42, 54);
 	Color forgcolorfordracula = new Color(248, 248, 242);
+
 	private Timer autosaveTimer;
 	private final int AUTOSAVE_INTERVAL = 60000; // Autosave after every 60 seconds
 
+	// declaring object to call the other files in project such as
+	// Function_Format.java and Function_File_and_Edit
 	Function_File_and_Edit f = new Function_File_and_Edit(this);
 	Function_Format f1 = new Function_Format(this);
 	UndoManager U = new UndoManager();
@@ -51,6 +61,7 @@ public class Notepad implements ActionListener {
 	}
 
 	Notepad() {
+		// Calling all the methods in consturctor
 		window();
 		textarea();
 		iconfuntion();
@@ -60,10 +71,12 @@ public class Notepad implements ActionListener {
 		formatmenuitems();
 		helpmenuitems();
 		viewmenuitems();
+		// declaring default fonts so to prevent the error
 		f1.Format_Font(14);
 		f1.setFont("Segoe UI");
 		f1.Format_Wordwrap();
 
+		// autosave methods
 		toggleAutosave();
 		autosaveTimer.start();
 
@@ -534,7 +547,7 @@ public class Notepad implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// Switch case to TRRIGER THE FUNCTION
+		// Switch case to Trigger THE FUNCTION
 		command = e.getActionCommand();
 
 		switch (command) {
@@ -712,8 +725,11 @@ public class Notepad implements ActionListener {
 				break;
 			case "About":
 				String aboutMessage = "Notepad Clone\n\n"
-						+ "Version: 1.0\n"
+						+ "Version: 2.0\n"
 						+ "Developer: Vivek Sonawale\n"
-						+ "Description: This is Notepad Clone, using Java.\nAdded New Features Like Theme And Autosave\n"
-						+ "Copyright © 2023  SenpaiPro";
-
+						+ "Description: This is Notepad Clone, using Java.\n"
+						+ "Copyright © 2023  Notepad_Clone \n";
+						JOptionPane.showMessageDialog(null,aboutMessage,"About",JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+}
