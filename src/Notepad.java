@@ -8,8 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
-import java.io.IOException;
+import java.io.IOException; 
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -40,7 +39,7 @@ public class Notepad implements ActionListener {
 	Color backcolorfordracula = new Color(40, 42, 54);
 	Color forgcolorfordracula = new Color(248, 248, 242);
 	private Timer autosaveTimer;
-	private final int AUTOSAVE_INTERVAL = 6000; // Autosave every 60 seconds
+	private final int AUTOSAVE_INTERVAL = 60000; // Autosave after every 60 seconds
 
 	Function_File_and_Edit f = new Function_File_and_Edit(this);
 	Function_Format f1 = new Function_Format(this);
@@ -64,12 +63,7 @@ public class Notepad implements ActionListener {
 		f1.Format_Font(14);
 		f1.setFont("Segoe UI");
 		f1.Format_Wordwrap();
-		autosaveTimer = new Timer(AUTOSAVE_INTERVAL, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				f.File_save();
-			}
-		});
+
 		toggleAutosave();
 		autosaveTimer.start();
 
@@ -94,19 +88,17 @@ public class Notepad implements ActionListener {
 
 			public void handleExit() {
 				if (f.isTextModified()) {
-					int result = JOptionPane.showConfirmDialog(windows, "Do you want to save changes before exiting?",
-							"Exit Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
+					int result = JOptionPane.showConfirmDialog(windows, "Do you want to save changes to " + f.filename,
+							"Notepad", JOptionPane.YES_NO_CANCEL_OPTION);
 
 					if (result == JOptionPane.YES_OPTION) {
 						f.File_save();
 						System.exit(0);
 					} else if (result == JOptionPane.NO_OPTION) {
 						System.exit(0);
-					} else if (result == JOptionPane.CANCEL_OPTION) {
-
-					} else {
-						System.out.println("This is Cancel from EXIT menuitem");
 					}
+				} else {
+					System.out.println("This is Cancel from EXIT menuitem");
 				}
 			}
 		});
@@ -132,7 +124,6 @@ public class Notepad implements ActionListener {
 			autosaveTimer.start();
 		}
 	}
-	
 
 	public void iconfuntion() {
 		Image icon = Toolkit.getDefaultToolkit().getImage("D:\\CPP Project\\Notepad_Clone\\src\\icon.png");
@@ -570,7 +561,7 @@ public class Notepad implements ActionListener {
 			case "Exit":
 				if (f.isTextModified()) {
 					int result = JOptionPane.showConfirmDialog(windows, "Do you want to save changes before exiting?",
-							"Exit Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
+							"Notepad", JOptionPane.YES_NO_CANCEL_OPTION);
 
 					if (result == JOptionPane.YES_OPTION) {
 						f.File_save();
@@ -726,8 +717,3 @@ public class Notepad implements ActionListener {
 						+ "Description: This is Notepad Clone, using Java.\nAdded New Features Like Theme And Autosave\n"
 						+ "Copyright © 2023  SenpaiPro";
 
-				JOptionPane.showMessageDialog(null, aboutMessage, "About", JOptionPane.INFORMATION_MESSAGE);
-				break;
-		}
-	}
-}

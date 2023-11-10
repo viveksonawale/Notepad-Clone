@@ -51,6 +51,7 @@ public class Function_File_and_Edit {
 		} catch (Exception e) {
 			System.out.println("File Error![File didn't opened Properly!!!]");
 		}
+		N.windows.setTitle(filename +" - Notepad");
 	}
 
 	public void File_save_as() {
@@ -74,6 +75,7 @@ public class Function_File_and_Edit {
 		} catch (Exception e) {
 			System.out.println("Error!");
 		}
+		N.windows.setTitle(filename +" - Notepad");
 	}
 
 	public void File_save() {
@@ -86,12 +88,12 @@ public class Function_File_and_Edit {
 				fw.write(N.ta.getText());
 				fw.close();
 				N.windows.setTitle(filename);
-				System.out.println("file saved Successfully!");
+				System.out.println("File saved Successfully!");
 			} catch (Exception e) {
 				System.out.println("Error!");
 			}
 		}
-
+		N.windows.setTitle(filename +" - Notepad");
 	}
 
 	public boolean isTextModified() {
