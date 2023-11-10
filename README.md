@@ -40,7 +40,7 @@ To use this Notepad Clone, follow these steps:
 3. Run the application.
 4. Explore the various features and customize your notepad as desired.
 
-## Download JAR File
+Download JAR File
 [Notepad.zip](https://github.com/Vivek-Sonawale/Notepad-Clone/files/13319888/Notepad.zip)
 
 ## Usage
