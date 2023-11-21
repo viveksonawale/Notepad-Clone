@@ -1,4 +1,4 @@
-# Notepad Clone Project
+#Notepad Clone Project
 
 ![Project Screenshot](https://github.com/Vivek-Sonawale/Notepad-Clone/assets/110754566/c3e62ae9-3957-4e15-8085-21b5fe856d00)
 
