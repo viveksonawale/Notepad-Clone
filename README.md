@@ -41,7 +41,7 @@ To use this Notepad Clone, follow these steps:
 4. Explore the various features and customize your notepad as desired.
 
 Download JAR File
-[Notepad.zip](https://github.com/Vivek-Sonawale/Notepad-Clone/files/13319888/Notepad.zip)
+[Notepad.zip](https://github.com/Vivek-Sonawale/Notepad-Clone/files/13422010/Notepad.zip)
 
 ## Usage
 
