@@ -140,9 +140,8 @@ public class Notepad implements ActionListener {
 	}
 
 	public void iconfuntion() {
-		Image icon = Toolkit.getDefaultToolkit().getImage("D:\\JAVA\\Java Project\\CPP Project\\Notepad_Clone\\src\\icon.png");
-		windows.setIconImage(icon);
-		// icon.equals(true);
+		ImageIcon i = new ImageIcon(ClassLoader.getSystemResource("icon.png"));
+		windows.setIconImage(i.getImage());
 	}
 
 	public void textarea() {
