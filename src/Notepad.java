@@ -28,7 +28,7 @@ public class Notepad implements ActionListener {
 	// Edit Menu
 	JMenuItem copy, paste, cut, selectall, undo, redo;
 	// Help Menu
-	JMenuItem about, view_help;
+	JMenuItem about, view_help, send_feedback;
 	// View Menu
 	JMenuItem Dark, dracula, wwhite, Red, Blue, Green, hacker;
 	// Format Menu
@@ -64,7 +64,7 @@ public class Notepad implements ActionListener {
 		// Calling all the methods in consturctor
 		window();
 		textarea();
-		iconfuntion();
+		iconfunction();
 		Menubar();
 		filemenuitems();
 		editmenuitems();
@@ -87,37 +87,46 @@ public class Notepad implements ActionListener {
 		windows = new JFrame("Notepad");
 		windows.setSize(900, 500);
 		windows.setLocationRelativeTo(null);
-		windows.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		windows.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		windows.getContentPane().setBackground(Color.white);
 		windows.setVisible(true);
 		windows.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				if (ta != null) {
-					handleExit();
-				} else if (ta == null) {
-					System.exit(0);
-				}
+				handleExit();
 			}
-
+	
 			public void handleExit() {
-				if (f.isTextModified()) {
-					int result = JOptionPane.showConfirmDialog(windows, "Do you want to save changes to " + f.filename,
-							"Notepad", JOptionPane.YES_NO_CANCEL_OPTION);
-
-					if (result == JOptionPane.YES_OPTION) {
-						f.File_save();
-						System.exit(0);
-					} else if (result == JOptionPane.NO_OPTION) {
+				if (ta != null) {
+					if (f.isTextModified()) {
+						Object[] options = {"Save", "Don't Save", "Cancel"};
+						int result = JOptionPane.showOptionDialog(windows,
+								"Do you want to save changes to " + f.filename + " ?",
+								"Notepad",
+								JOptionPane.YES_NO_CANCEL_OPTION,
+								JOptionPane.QUESTION_MESSAGE,
+								null,
+								options,
+								options[0]);
+	
+						if (result == JOptionPane.YES_OPTION) {
+							f.File_save();
+							System.exit(0);
+						} else if (result == JOptionPane.NO_OPTION) {
+							System.exit(0);
+						} else if (result == JOptionPane.CANCEL_OPTION || result == JOptionPane.CLOSED_OPTION) {
+							// Do nothing, user wants to cancel
+						}
+					} else {
 						System.exit(0);
 					}
 				} else {
-					System.out.println("This is Cancel from EXIT menuitem");
+					System.exit(0);
 				}
 			}
 		});
-
 	}
+	
 
 	public void toggleAutosave() {
 		if (autosaveon) {
@@ -139,9 +148,16 @@ public class Notepad implements ActionListener {
 		}
 	}
 
-	public void iconfuntion() {
-		ImageIcon i = new ImageIcon(ClassLoader.getSystemResource("icon.png"));
-		windows.setIconImage(i.getImage());
+	public void iconfunction() {
+		try {
+
+			Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon.png"));
+
+			windows.setIconImage(icon);
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
 	}
 
 	public void textarea() {
@@ -224,6 +240,7 @@ public class Notepad implements ActionListener {
 		autosave.setActionCommand("AutoSave");
 		autosave.setBackground(Color.WHITE);
 		file.add(autosave);
+		file.addSeparator();
 
 		exit = new JMenuItem("Exit");
 		exit.setFont(new Font("Segoe UI", Font.PLAIN, 12));
@@ -536,6 +553,14 @@ public class Notepad implements ActionListener {
 		view_help.setBackground(Color.WHITE);
 		help.add(view_help);
 
+		send_feedback = new JMenuItem("Send Feedback");
+		send_feedback.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		send_feedback.addActionListener(this);
+		send_feedback.setActionCommand("Send Feedback");
+		send_feedback.setBackground(Color.WHITE);
+		help.add(send_feedback);
+		help.addSeparator();
+
 		about = new JMenuItem("About");
 		about.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		about.addActionListener(this);
@@ -573,17 +598,26 @@ public class Notepad implements ActionListener {
 				break;
 			case "Exit":
 				if (f.isTextModified()) {
-					int result = JOptionPane.showConfirmDialog(windows, "Do you want to save changes before exiting?",
-							"Notepad", JOptionPane.YES_NO_CANCEL_OPTION);
+					Object[] options = { "Save", "Don't Save", "Cancel" };
+					int result = JOptionPane.showOptionDialog(windows,
+							"Do you want to save changes to "+f.filename +" ?",
+							"Notepad",
+							JOptionPane.YES_NO_CANCEL_OPTION,
+							JOptionPane.QUESTION_MESSAGE,
+							null,
+							options,
+							options[0]);
 
 					if (result == JOptionPane.YES_OPTION) {
 						f.File_save();
 						System.exit(0);
 					} else if (result == JOptionPane.NO_OPTION) {
 						System.exit(0);
+					} else if (result == JOptionPane.CANCEL_OPTION || result == JOptionPane.CLOSED_OPTION) {
+						// Do nothing, user wants to cancel
 					}
 				} else {
-					System.out.println("This is Cancel from EXIT menuitem");
+					System.exit(0);
 				}
 				break;
 			case "Undo":
@@ -723,13 +757,22 @@ public class Notepad implements ActionListener {
 					ex.printStackTrace();
 				}
 				break;
+
+			case "Send Feedback":
+				try {
+					Desktop.getDesktop().browse(new URI("https://github.com/Vivek-Sonawale"));
+				} catch (IOException | URISyntaxException ex) {
+					ex.printStackTrace();
+				}
+				break;
+
 			case "About":
 				String aboutMessage = "Notepad Clone\n\n"
 						+ "Version: 2.0\n"
 						+ "Developer: Vivek Sonawale\n"
 						+ "Description: This is Notepad Clone, using Java.\n"
 						+ "Copyright © 2023  Notepad_Clone \n";
-						JOptionPane.showMessageDialog(null,aboutMessage,"About",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, aboutMessage, "About", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 }
