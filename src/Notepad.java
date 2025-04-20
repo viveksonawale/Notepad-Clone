@@ -752,7 +752,7 @@ public class Notepad implements ActionListener {
 				break;
 			case "View Help":
 				try {
-					Desktop.getDesktop().browse(new URI("https://github.com/Vivek-Sonawale"));
+					Desktop.getDesktop().browse(new URI("https://github.com/viveksonawale"));
 				} catch (IOException | URISyntaxException ex) {
 					ex.printStackTrace();
 				}
@@ -760,7 +760,7 @@ public class Notepad implements ActionListener {
 
 			case "Send Feedback":
 				try {
-					Desktop.getDesktop().browse(new URI("https://github.com/Vivek-Sonawale"));
+					Desktop.getDesktop().browse(new URI("https://github.com/viveksonawale"));
 				} catch (IOException | URISyntaxException ex) {
 					ex.printStackTrace();
 				}
